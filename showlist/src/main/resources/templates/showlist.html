@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Showlist</title>
+</head>
+<body>
+    <div>
+        <h1>Shows</h1>
+        <table>
+            <tr>
+                <th>First aired</th>
+                <th>Creator</th>
+                <th>Title</th>
+                <th>IMDB-rating</th>
+                <th>Watched</th>
+                <th>My rating</th>
+            </tr>
+
+            <tr th:each="s : ${shows}">
+                <td th:text="${s.firstAired}"></td>
+                <td th:text="${s.creators}"></td>
+                <td th:text="${s.title}"></td>
+                <td th:text="${s.imdbRating}"></td>
+                <td th:text="${s.watched}"></td>
+                <td th:text="${s.myRating}"></td>
+            </tr>
+        </table>
+    </div>
+    
+</body>
+</html>
