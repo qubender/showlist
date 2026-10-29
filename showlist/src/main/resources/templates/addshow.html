@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Show</title>
+</head>
+<body>
+    <h1>Add Show</h1>
+    <form th:action="@{/save}" th:object="${shows}" method="post">
+    <table>
+        <tr>
+            <td>First aired <input type="text" th:field="*{firstAired}" /></td>
+            <td>Creator <input type="text" th:field="*{creators}" /></td>
+            <td>Title <input type="text" th:field="*{title}" /></td>
+            <td>IMDB-rating <input type="text" th:field="*{imdbRating}" /></td>
+            <td>Watched <input type="text" th:field="*{watched}" /></td>
+            <td>My rating <input type="text" th:field="*{myRating}" /></td>
+        </tr>
+    </table>
+    <button type="submit">Add</button>
+    </form>
+</body>
+</html>

@@ -13,7 +13,7 @@ public class Show {
     private long id;
     private String title, creators, watched;
     private int firstAired;
-    private double imdbRating, myRating;
+    private double imdbRating, myRating; //imdb ratingin voin ehkä hakea API:lla?
     
     public Show(String title, String creators, String watched, int firstAired, double imdbRating, double myRating) {
         this.title = title;

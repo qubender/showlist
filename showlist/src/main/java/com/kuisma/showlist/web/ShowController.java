@@ -3,8 +3,11 @@ package com.kuisma.showlist.web;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.kuisma.showlist.domain.Show;
 import com.kuisma.showlist.repository.ShowRepository;
+
 
 @Controller 
 public class ShowController {
@@ -26,5 +29,18 @@ public class ShowController {
         model.addAttribute("shows", showRepository.findAll());
         return "showlist";
     }
+
+    @RequestMapping(value = "/addshow", method = RequestMethod.GET)
+    public String addShow(Model model) {
+        model.addAttribute("shows", new Show());
+        return "addshow";
+    }
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public String saveShow(Show show) {
+        showRepository.save(show);
+        return "redirect:showlist";
+    }
+    
 
 }
