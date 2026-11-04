@@ -5,6 +5,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity(name = "users")
 public class AppUser {
@@ -12,8 +15,12 @@ public class AppUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, updatable = false)
     private Long id;
+    @NotBlank 
+    @Size(min = 4, max = 10)
     @Column(name = "username", nullable = false, updatable = true)
     private String username;
+    @NotBlank 
+    @Min(7)
     @Column(name = "password", nullable = false)
     private String passwordHash;
     @Column(name = "role", nullable = false)

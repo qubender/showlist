@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ShowlistApplication<showlist>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.kuisma.showlist.ShowlistApplication",
+            "projectName": "showlist",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
