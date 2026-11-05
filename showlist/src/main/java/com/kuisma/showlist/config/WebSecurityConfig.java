@@ -20,7 +20,14 @@ public class WebSecurityConfig {
         http
             .authorizeHttpRequests(authorize -> authorize
                 .requestMatchers("/addshow/**", "/delete/**", "/edit/**", "/save/**").hasAuthority("ADMIN")
-                .anyRequest().permitAll())
+                .anyRequest().permitAll()
+            )
+                .csrf(csrf -> csrf
+                .ignoringRequestMatchers("/h2-console/**")
+            )
+            .headers(headers -> headers
+                .frameOptions(frame -> frame.sameOrigin())
+            )
             .formLogin(formLogin -> formLogin.loginPage("/login").permitAll());
         
             return http.build();

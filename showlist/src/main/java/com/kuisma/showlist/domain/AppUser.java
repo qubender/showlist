@@ -5,7 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -20,7 +19,7 @@ public class AppUser {
     @Column(name = "username", nullable = false, updatable = true)
     private String username;
     @NotBlank 
-    @Min(7)
+    @Size(min = 7)
     @Column(name = "password", nullable = false)
     private String passwordHash;
     @Column(name = "role", nullable = false)

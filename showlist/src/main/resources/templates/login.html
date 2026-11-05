@@ -11,9 +11,8 @@
         <label for="username">Username</label>
         <input type="text" id="username" name="username" autofocus="autofocus" /> <br />
         <div class="alert alert-warning" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
-        <label for="passwordHash">Password</label>
-        <input type="passwordHash" id="passwordHash" name="passwordHash" /> <br />
-        <div class="alert alert-warning" th:if="${#fields.hasErrors('passwordHash')}" th:errors="*{passwordHash}"></div>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" /> <br />
         <input type="submit" value="Log in" />
     </form>
 </body>
