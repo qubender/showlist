@@ -19,34 +19,34 @@ import com.kuisma.showlist.repository.CategoryRepository;
 public class ShowlistApplication {
 
 	private final BCryptPasswordEncoder passwordEncoder;
-    private final AppUserRepository appUserRepository;
+	private final AppUserRepository appUserRepository;
 
-    ShowlistApplication(AppUserRepository appUserRepository, BCryptPasswordEncoder passwordEncoder) {
-        this.appUserRepository = appUserRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
+	ShowlistApplication(AppUserRepository appUserRepository, BCryptPasswordEncoder passwordEncoder) {
+		this.appUserRepository = appUserRepository;
+		this.passwordEncoder = passwordEncoder;
+	}
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 		SpringApplication.run(ShowlistApplication.class, args);
 	}
 
-	@Bean 
+	@Bean
 	CommandLineRunner demo(ShowRepository showRepository, CategoryRepository categoryRepository) {
 		return args -> {
 			Category c1 = new Category();
-			c1.setCategory("testikategoria");
+			c1.setKategoria("testikategoria");
 			categoryRepository.save(c1);
 
 			Show s1 = new Show("sarja1", "Tekija1", "2025-2026", 2000, 9.5, 8.5);
 			s1.setCategory(c1);
 			showRepository.save(s1);
 
-			AppUser user1 = new AppUser("kuisma", "$2a$10$/9k8M2rjtysxMLCLGlfJdeSm3Xh.wdwRoClk5pNw6QezkmduU7maa", "ADMIN");
+			AppUser user1 = new AppUser("kuisma", "$2a$10$/9k8M2rjtysxMLCLGlfJdeSm3Xh.wdwRoClk5pNw6QezkmduU7maa",
+					"ADMIN");
 			appUserRepository.save(user1);
 
-			System.out.println("BCrypt test: " + 
-				passwordEncoder.matches("salasana",user1.getPasswordHash())
-			);
+			System.out.println("BCrypt test: " +
+					passwordEncoder.matches("salasana", user1.getPasswordHash()));
 		};
 	}
 

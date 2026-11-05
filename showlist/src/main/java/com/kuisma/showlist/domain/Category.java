@@ -9,10 +9,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
-@Entity 
+@Entity
 public class Category {
 
-    @Id 
+    // voi lisätä välilehtivalikon ja vaihtoehdon lisätä siihen kategorioita
+
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false, updatable = false)
     private Long id;
@@ -30,11 +32,11 @@ public class Category {
         this.kategoria = kategoria;
     }
 
-    public String getCategory() {
+    public String getKategoria() {
         return kategoria;
     }
 
-    public void setCategory(String kategoria) {
+    public void setKategoria(String kategoria) {
         this.kategoria = kategoria;
     }
 

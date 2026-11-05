@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Showlist</title>
 </head>
+
 <body>
     <div>
         <h1>Shows</h1>
@@ -16,6 +18,7 @@
                 <th>IMDB-rating</th>
                 <th>Watched</th>
                 <th>My rating</th>
+                <th>Kategoria</th>
             </tr>
 
             <tr th:each="s : ${shows}">
@@ -30,6 +33,7 @@
         </table>
         <a href="/addshow" class="btn btn-primary">Add Show</a>
     </div>
-    
+
 </body>
+
 </html>

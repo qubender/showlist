@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.kuisma.showlist.domain.AppUser;
+import com.kuisma.showlist.domain.Category;
 import com.kuisma.showlist.domain.Show;
 import com.kuisma.showlist.repository.CategoryRepository;
 import com.kuisma.showlist.repository.ShowRepository;
 
 import jakarta.validation.Valid;
 
-
-@Controller 
+@Controller
 public class ShowController {
 
     @RequestMapping("/index")
@@ -41,6 +41,7 @@ public class ShowController {
     @RequestMapping(value = "/addshow", method = RequestMethod.GET)
     public String addShow(Model model) {
         model.addAttribute("shows", new Show());
+        model.addAttribute("category", categoryRepository.findAll());
         return "addshow";
     }
 
@@ -51,7 +52,12 @@ public class ShowController {
             return "addshow";
         }
 
-        show.setCategory(categoryRepository.findById(show.getCategory().getId()).orElseThrow());
+        Long categoryId = show.getCategory().getId();
+
+        Category category = categoryRepository.findById(categoryId)
+                .orElseThrow();
+
+        show.setCategory(category);
 
         showRepository.save(show);
         return "redirect:showlist";
@@ -62,6 +68,5 @@ public class ShowController {
         model.addAttribute("appUser", new AppUser());
         return "login";
     }
-
 
 }
