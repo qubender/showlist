@@ -4,16 +4,28 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity 
 public class Show {
 
     @Id 
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
+    @NotBlank 
     private String title, creators, watched;
+    @NotNull
     private int firstAired;
-    private double imdbRating, myRating; //imdb ratingin voin ehkä hakea API:lla?
+    private double imdbRating;//imdb ratingin voin ehkä hakea API:lla?
+    @NotNull
+    private double myRating;
+
+    @ManyToOne
+    @JoinColumn(name = "kategoria_id")
+    private Category category;
     
     public Show(String title, String creators, String watched, int firstAired, double imdbRating, double myRating) {
         this.title = title;
@@ -26,6 +38,14 @@ public class Show {
 
     public Show() {
         
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
     
     public String getTitle() {

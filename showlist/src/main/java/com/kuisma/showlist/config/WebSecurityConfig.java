@@ -28,7 +28,10 @@ public class WebSecurityConfig {
             .headers(headers -> headers
                 .frameOptions(frame -> frame.sameOrigin())
             )
-            .formLogin(formLogin -> formLogin.loginPage("/login").permitAll());
+            .formLogin(formLogin -> formLogin
+                .loginPage("/login")
+                .defaultSuccessUrl("/showlist", false)
+                .permitAll());
         
             return http.build();
     }
