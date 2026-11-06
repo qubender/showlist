@@ -77,4 +77,10 @@ public class ShowController {
     public Show findShowRest(@PathVariable("id") Long showId) {
         return showRepository.findById(showId).orElseThrow();
     }
+
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String showModShow(@PathVariable("id") Long showId, Model model) {
+        model.addAttribute("show", showRepository.findById(showId));
+        return "edit";
+    }
 }
