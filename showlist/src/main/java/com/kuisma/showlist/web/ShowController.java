@@ -4,8 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kuisma.showlist.domain.AppUser;
 import com.kuisma.showlist.domain.Category;
@@ -24,6 +26,7 @@ public class ShowController {
         return "frontpage";
     }
 
+    //repojen konstruktorit
     private ShowRepository showRepository;
     private CategoryRepository categoryRepository;
 
@@ -31,13 +34,13 @@ public class ShowController {
         this.showRepository = showRepository;
         this.categoryRepository = categoryRepository;
     }
-
+    //lista ohjelmista
     @RequestMapping("/showlist")
     public String shows(Model model) {
         model.addAttribute("shows", showRepository.findAll());
         return "showlist";
     }
-
+    //lisää ohjelma sivu
     @RequestMapping(value = "/addshow", method = RequestMethod.GET)
     public String addShow(Model model) {
         model.addAttribute("shows", new Show());
@@ -62,11 +65,16 @@ public class ShowController {
         showRepository.save(show);
         return "redirect:showlist";
     }
-
+    //sisäänkirjautumissivu
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String logIn(Model model) {
         model.addAttribute("appUser", new AppUser());
         return "login";
     }
-
+    //REST, joka tulostaa ohjelmien tiedot
+    @RequestMapping(value = "/api/showlist/{id}", method = RequestMethod.GET)
+    @ResponseBody 
+    public Show findShowRest(@PathVariable("id") Long showId) {
+        return showRepository.findById(showId).orElseThrow();
+    }
 }

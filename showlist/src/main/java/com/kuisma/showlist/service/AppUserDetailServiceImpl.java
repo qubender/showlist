@@ -24,6 +24,7 @@ public class AppUserDetailServiceImpl implements UserDetailsService {
         if (currentUser == null) {
             throw new UsernameNotFoundException("User not found: " + username);
         }
+        //käsittelee kirjautumisen
         UserDetails user = new org.springframework.security.core.userdetails.User(
             currentUser.getUsername(),
             currentUser.getPasswordHash(),

@@ -19,7 +19,7 @@ public class Show {
     private String title, creators, watched;
     @NotNull
     private int firstAired;
-    private double imdbRating;// imdb ratingin voin ehkä hakea API:lla?
+    private double imdbRating;
     @NotNull
     private double myRating;
 
@@ -95,5 +95,11 @@ public class Show {
     public void setMyRating(double myRating) {
         myRating = myRating;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+
 
 }

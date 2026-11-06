@@ -2,6 +2,7 @@ package com.kuisma.showlist.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,8 +12,6 @@ import jakarta.persistence.OneToMany;
 
 @Entity
 public class Category {
-
-    // voi lisätä välilehtivalikon ja vaihtoehdon lisätä siihen kategorioita
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
