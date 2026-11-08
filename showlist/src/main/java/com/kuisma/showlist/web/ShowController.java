@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kuisma.showlist.domain.AppUser;
@@ -49,16 +50,13 @@ public class ShowController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveShow(@Valid @ModelAttribute("shows") Show show, BindingResult result) {
+    public String saveShow(@Valid @ModelAttribute("shows") Show show, BindingResult result, @RequestParam("categoryId") Long categoryId) {
 
         if (result.hasErrors()) {
             return "addshow";
         }
 
-        Long categoryId = show.getCategory().getId();
-
-        Category category = categoryRepository.findById(categoryId)
-                .orElseThrow();
+        Category category = categoryRepository.findById(categoryId).orElseThrow();
 
         show.setCategory(category);
 
@@ -77,10 +75,17 @@ public class ShowController {
     public Show findShowRest(@PathVariable("id") Long showId) {
         return showRepository.findById(showId).orElseThrow();
     }
-
+    //ohjelman muokkaus
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String showModShow(@PathVariable("id") Long showId, Model model) {
-        model.addAttribute("show", showRepository.findById(showId));
+        model.addAttribute("show", showRepository.findById(showId).orElseThrow());
+        model.addAttribute("category", categoryRepository.findAll());
         return "edit";
+    }
+    //ohjelman poistaminen
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String deleteShow(@PathVariable("id") Long showId, Model model) {
+        showRepository.deleteById(showId);
+        return "redirect:../showlist";
     }
 }

@@ -29,8 +29,8 @@
                     <div th:if="${#fields.hasErrors('myRating')}" th:errors="*{myRating}"></div>
                 </td>
                 <td>
-                    <select th:field="*{category.id}">
-                        <option value="">Valitse kategoria</option>
+                    <select name="categoryId">
+                        <option value="">Choose category</option>
                         <option th:each="c : ${category}" th:value="${c.id}" th:text="${c.kategoria}">
                         </option>
                     </select>

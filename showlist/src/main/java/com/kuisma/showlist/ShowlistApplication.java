@@ -33,12 +33,32 @@ public class ShowlistApplication {
 		return args -> {
 			//testi tv-ohjelmat
 			Category c1 = new Category();
-			c1.setKategoria("testikategoria");
+			c1.setKategoria("Anime");
 			categoryRepository.save(c1);
 
-			Show s1 = new Show("sarja1", "Tekija1", "2025-2026", 2000, 9.5, 8.5);
+			Category c2 = new Category();
+			c2.setKategoria("Drama");
+			categoryRepository.save(c2);
+
+			Category c3 = new Category();
+			c3.setKategoria("Sci-fi");
+			categoryRepository.save(c3);
+
+			Category c4 = new Category();
+			c4.setKategoria("Thriller");
+			categoryRepository.save(c4);
+
+			Category c5 = new Category();
+			c5.setKategoria("Comedy");
+			categoryRepository.save(c5);
+
+			Show s1 = new Show("Attack on Titan", "Yasuko Kobayashi", "2025-2026", 2013, 9.1, 9.0);
 			s1.setCategory(c1);
 			showRepository.save(s1);
+
+			Show s2 = new Show("Shameless", "Paul Abbott", "2015-2020", 2011, 8.5, 8.0);
+			s2.setCategory(c2);
+			showRepository.save(s2);
 			//testikäyttäjä
 			AppUser user1 = new AppUser("kuisma", "$2a$10$/9k8M2rjtysxMLCLGlfJdeSm3Xh.wdwRoClk5pNw6QezkmduU7maa",
 					"ADMIN");

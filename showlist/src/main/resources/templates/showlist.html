@@ -18,7 +18,7 @@
                 <th>IMDB-rating</th>
                 <th>Watched</th>
                 <th>My rating</th>
-                <th>Kategoria</th>
+                <th>Category</th>
             </tr>
 
             <tr th:each="s : ${shows}">
@@ -29,6 +29,8 @@
                 <td th:text="${s.watched}"></td>
                 <td th:text="${s.myRating}"></td>
                 <td th:text="${s.category.kategoria}"></td>
+                <td><a th:href="@{/edit/{id} (id=${s.id})}">Edit</a></td>
+                <td sec:authorize="hasAuthority ('ADMIN')"><a th:href="@{/delete/{id}(id=${s.id})}">Delete</a></td>
             </tr>
         </table>
         <a href="/addshow" class="btn btn-primary">Add Show</a>

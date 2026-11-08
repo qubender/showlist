@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+</head>
+<body>
+    <h1>Edit show</h1>
+    <form th:object="${show}" th:action="@{/save}" method="post">
+        <label for="id"></label>
+        <input type="hidden" id="id" th:field="*{id}" readonly="readonly" />
+        <div style="clear:both; display:block; height: 10px;"></div>
+        <label for="firstAired">First aired</label>
+        <input type="text" id="firstAired" th:field="*{firstAired}" />
+        <label for="creators">Creator</label>
+        <input type="text" id="creators" th:field="*{creators}" />
+        <label for="title">Title</label>
+        <input type="text" id="title" th:field="*{title}" />
+        <label for="imdbRating">IMDB-rating</label>
+        <input type="text" id="imdbRating" th:field="*{imdbRating}" />
+        <label for="watched">Watched</label>
+        <input type="text" id="watched" th:field="*{watched}" />
+        <label for="myRating">My rating</label>
+        <input type="text" id="myRating" th:field="*{myRating}" />
+        <td>
+                    <select name="categoryId">
+                        <option value="">Valitse kategoria</option>
+                        <option th:each="c : ${category}" th:value="${c.id}" th:text="${c.kategoria}" th:selected="${c.id == show.category.id}">
+                        </option>
+                    </select>
+                </td>
+        <input class="btn btn-success" type="submit" value="save"></input>
+    </form>
+</body>
+</html>

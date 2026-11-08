@@ -85,7 +85,7 @@ public class Show {
     }
 
     public void setImdbRating(double imdbRating) {
-        imdbRating = imdbRating;
+        this.imdbRating = imdbRating;
     }
 
     public double getMyRating() {
@@ -93,13 +93,15 @@ public class Show {
     }
 
     public void setMyRating(double myRating) {
-        myRating = myRating;
+        this.myRating = myRating;
     }
 
     public Long getId() {
         return id;
     }
 
-
+    public void setId(Long id) {
+        this.id = id;
+    }
 
 }
